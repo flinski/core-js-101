@@ -99,13 +99,12 @@ function getArrayOfStrings(arr) {
  */
 function removeFalsyValues(arr) {
   return arr.filter(
-    (value) =>
-      value !== 0 &&
-      value !== '' &&
-      value !== false &&
-      value !== null &&
-      value !== undefined &&
-      !Number.isNaN(value)
+    (value) => value !== 0
+      && value !== ''
+      && value !== false
+      && value !== null
+      && value !== undefined
+      && !Number.isNaN(value),
   );
 }
 
@@ -400,12 +399,12 @@ function getFalsyValuesCount(arr) {
 
   return arr.reduce((sum, value) => {
     if (
-      value === 0 ||
-      value === '' ||
-      value === false ||
-      value === null ||
-      value === undefined ||
-      Number.isNaN(value)
+      value === 0
+      || value === ''
+      || value === false
+      || value === null
+      || value === undefined
+      || Number.isNaN(value)
     ) {
       return sum + 1;
     }
@@ -431,7 +430,7 @@ function getFalsyValuesCount(arr) {
 function findAllOccurrences(arr, item) {
   return arr.reduce(
     (occurrences, value) => (value === item ? occurrences + 1 : occurrences),
-    0
+    0,
   );
 }
 
@@ -513,15 +512,13 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
-  return new Array(n).fill(0).map((value, index) =>
-    new Array(n).fill(0).map((row, rowIndex) => {
-      if (index === rowIndex) {
-        return 1;
-      }
+  return new Array(n).fill(0).map((value, index) => new Array(n).fill(0).map((row, rowIndex) => {
+    if (index === rowIndex) {
+      return 1;
+    }
 
-      return 0;
-    })
-  );
+    return 0;
+  }));
 }
 
 /**
@@ -539,7 +536,7 @@ function getIdentityMatrix(n) {
  */
 function getIntervalArray(start, end) {
   return Array.from({ length: end - start + 1 }).map(
-    (value, index) => start + index
+    (value, index) => start + index,
   );
 }
 
@@ -554,9 +551,12 @@ function getIntervalArray(start, end) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(arr) {
-  return Array.from(new Set(arr));
+function distinct(/* arr */) {
+  throw new Error('Not implemented');
 }
+// function distinct(arr) {
+//   return Array.from(new Set(arr));
+// }
 
 /**
  * Groups elements of the specified array by key.
