@@ -140,10 +140,10 @@ function isTriangle(a, b, c) {
  */
 function doRectanglesOverlap(rect1, rect2) {
   return (
-    rect1.left + rect1.width >= rect2.left &&
-    rect1.left <= rect2.left + rect2.width &&
-    rect1.top + rect1.height >= rect2.top &&
-    rect1.top <= rect2.top + rect2.height
+    rect1.left + rect1.width >= rect2.left
+    && rect1.left <= rect2.left + rect2.width
+    && rect1.top + rect1.height >= rect2.top
+    && rect1.top <= rect2.top + rect2.height
   );
 }
 /**
@@ -174,8 +174,8 @@ function doRectanglesOverlap(rect1, rect2) {
  */
 function isInsideCircle(circle, point) {
   const distance = Math.sqrt(
-    (circle.center.x - point.x) * (circle.center.x - point.x) +
-      (circle.center.y - point.y) * (circle.center.y - point.y)
+    (circle.center.x - point.x) * (circle.center.x - point.x)
+      + (circle.center.y - point.y) * (circle.center.y - point.y),
   );
 
   return distance < circle.radius;
@@ -192,30 +192,8 @@ function isInsideCircle(circle, point) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(str) {
-  const arr = Array.from(
-    str.split('').reduce((map, char) => {
-      if (!map.has(char)) {
-        map.set(char, 0);
-      } else {
-        map.set(char, map.get(char) + 1);
-      }
-
-      return map;
-    }, new Map())
-  );
-
-  let result = null;
-
-  for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i][1] === 0) {
-      const [char] = arr[i];
-      result = char;
-      break;
-    }
-  }
-
-  return result;
+function findFirstSingleChar(/* str */) {
+  throw new Error('Not implemented');
 }
 
 /**
