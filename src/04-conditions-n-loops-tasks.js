@@ -241,8 +241,8 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-  const min = Math.min(a, b);
-  const max = Math.max(a, b);
+  const min = a < b ? a : b;
+  const max = a >= b ? a : b;
   const startBracket = isStartIncluded ? '[' : '(';
   const endBracket = isEndIncluded ? ']' : ')';
 
