@@ -140,10 +140,10 @@ function isTriangle(a, b, c) {
  */
 function doRectanglesOverlap(rect1, rect2) {
   return (
-    rect1.left + rect1.width >= rect2.left
-    && rect1.left <= rect2.left + rect2.width
-    && rect1.top + rect1.height >= rect2.top
-    && rect1.top <= rect2.top + rect2.height
+    rect1.left + rect1.width >= rect2.left &&
+    rect1.left <= rect2.left + rect2.width &&
+    rect1.top + rect1.height >= rect2.top &&
+    rect1.top <= rect2.top + rect2.height
   );
 }
 /**
@@ -174,8 +174,8 @@ function doRectanglesOverlap(rect1, rect2) {
  */
 function isInsideCircle(circle, point) {
   const distance = Math.sqrt(
-    (circle.center.x - point.x) * (circle.center.x - point.x)
-      + (circle.center.y - point.y) * (circle.center.y - point.y),
+    (circle.center.x - point.x) * (circle.center.x - point.x) +
+      (circle.center.y - point.y) * (circle.center.y - point.y)
   );
 
   return distance < circle.radius;
@@ -192,8 +192,30 @@ function isInsideCircle(circle, point) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  let result = null;
+  const chars = {};
+
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+
+    if (char in chars) {
+      chars[char] += 1;
+    } else {
+      chars[char] = 0;
+    }
+  }
+
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+
+    if (chars[char] === 0) {
+      result = char;
+      break;
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -218,8 +240,13 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const min = Math.min(a, b);
+  const max = Math.max(a, b);
+  const startBracket = isStartIncluded ? '[' : '(';
+  const endBracket = isEndIncluded ? ']' : ')';
+
+  return `${startBracket}${min}, ${max}${endBracket}`;
 }
 
 /**
